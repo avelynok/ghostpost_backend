@@ -10,11 +10,12 @@ DateTimeField for submission time
 """
 # Create your models here.
 class Post(models.Model):
-    post_title = models.CharField(max_length=30)
+    post_title = models.CharField(max_length=5)
     post = models.CharField(max_length=280)
     post_type = models.BooleanField(default=False, help_text="Checked if Boast")
     upVote = models.IntegerField(default=0)
     downVote = models.IntegerField(default=0)
+    totalVote = models.IntegerField(default=0)
     date = models.DateTimeField(default=timezone.now)
  
     def __str__(self):

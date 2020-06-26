@@ -2,7 +2,7 @@ from rest_framework.serializers import ModelSerializer, HyperlinkedModelSerializ
 from g_post.models import Post
 
 
-class PostSerializer(ModelSerializer):
+class PostSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = Post
-        fields = ('post_title', 'post', 'post_type', 'upVote', 'downVote', 'date', )
+        fields = ('id', 'post_title', 'post', 'post_type', 'upVote', 'downVote', 'totalVote', 'date', )
