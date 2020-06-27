@@ -32,15 +32,8 @@ class PostViewSet(ModelViewSet):
         serializer = self.get_serializer(roast, many=True)
         return Response(serializer.data)
     
-    @action(detail=False)
-    def totalVote(self, request):
-        totalVote = Post.objects.all().order_by('-totalVote')
-        serializer = self.get_serializer(totalVote, many=True)
-        return Response(serializer.data)
-    
-    
     @action(detail=True, methods=['get'])
-    def upVote(self, request, pk=None):
+    def upVote(self, request, pk=id):
         post = Post.objects.get(pk=pk)
         post.upVote += 1
         post.totalVote +=1
@@ -48,13 +41,18 @@ class PostViewSet(ModelViewSet):
         return Response({'status': 'Upvoted'})
     
     @action(detail=True, methods=['get'])
-    def downVotes(self, request, pk=None):
+    def downVote(self, request, pk=id):
         post = Post.objects.get(pk=pk)
         post.downVote += 1
         post.totalVote -=1
         post.save()
         return Response({'status': 'Downvoted'})
         
+    @action(detail=False)
+    def totalVote(self, request):
+        totalVote = Post.objects.all().order_by('-totalVote')
+        serializer = self.get_serializer(totalVote, many=True)
+        return Response(serializer.data)
     
 
 """def add_post(request):
