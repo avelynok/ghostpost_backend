@@ -8,6 +8,7 @@ authors = ["avelyno <kou2295@calu.edu>"]
 python = "^3.8"
 django = "^3.0.7"
 djangorestframework = "^3.11.0"
+django-cors-headers = "^3.4.0"
 
 [tool.poetry.dev-dependencies]
 
